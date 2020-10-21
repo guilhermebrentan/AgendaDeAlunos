@@ -1,4 +1,4 @@
-package com.example.agenda;
+package com.example.agendaaluno;
 
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
@@ -8,7 +8,7 @@ public class RetrofitConfig {
 
     public RetrofitConfig(){
         this.retrofit = new Retrofit.Builder()
-                .baseUrl("192.168.0.137:3000")
+                .baseUrl("http://192.168.0.137:3000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
