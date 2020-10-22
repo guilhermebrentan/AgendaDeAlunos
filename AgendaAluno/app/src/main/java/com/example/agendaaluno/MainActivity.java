@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -20,7 +21,8 @@ import retrofit.Response;
 import retrofit.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
-    LinearLayout layout, pai;
+    LinearLayout layout;
+    ScrollView pai;
     EditText pesquisaRA;
     MainActivity contexto;
     Button btnBuscar;
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
             layout = (LinearLayout) findViewById(R.id.layout);
             pesquisaRA = (EditText) findViewById(R.id.edPesquisaRa);
-            pai = (LinearLayout) findViewById(R.id.pai);
+            pai = (ScrollView) findViewById(R.id.pai);
             btnBuscar = (Button) findViewById(R.id.btnBuscar);
             contexto = this;
 

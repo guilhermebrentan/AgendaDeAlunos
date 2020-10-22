@@ -1,29 +1,37 @@
 package com.example.agendaaluno;
 
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.IdentityHashMap;
 
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
+
 public class ViewAlunos {
-    public static void MostrarAlunos(ArrayList<Aluno> alunos, LinearLayout pai, MainActivity contexto){
+    public static void MostrarAlunos(ArrayList<Aluno> alunos, ScrollView pai, MainActivity contexto){
         pai.removeAllViews();
         for(int i = 0; i < alunos.size(); i++){
             CriarAluno(alunos.get(i), pai, contexto);
         }
     }
 
-    public static void MostrarAluno(Aluno aluno, LinearLayout pai, MainActivity contexto){
+
+    public static void MostrarAluno(Aluno aluno, ScrollView pai, MainActivity contexto){
         pai.removeAllViews();
         CriarAluno(aluno, pai, contexto);
     }
 
-    private static void CriarAluno(Aluno aluno, LinearLayout pai, MainActivity contexto){
+    private static void CriarAluno(Aluno aluno, ScrollView pai, MainActivity contexto){
         LinearLayout l = new LinearLayout(contexto);
         l.setOrientation(LinearLayout.HORIZONTAL);
         EditText ra = new EditText(contexto);
@@ -47,9 +55,54 @@ public class ViewAlunos {
         /*alterar.setTextSize(8);
         deletar.setTextSize(8);
         adicionar.setTextSize(8);*/
+
+        li.addView(adicionar);
+        li.addView(alterar);
+        li.addView(deletar);
+
+        LinearLayout lis = new LinearLayout(contexto);
+        lis.setOrientation(LinearLayout.VERTICAL);
+        lis.addView(l);
+        lis.addView(li);
+
+        pai.addView(lis);
+
         alterar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ViewGroup v = (ViewGroup)((ViewGroup)view.getParent().getParent()).getChildAt(0);
+
+                EditText edRA = (EditText)(v.getChildAt(0));
+                EditText edNome = (EditText)(v.getChildAt(1));
+                EditText edEmail = (EditText)(v.getChildAt(2));
+
+                try
+                {
+                    Aluno aluno = new Aluno(edRA.getText().toString(), edNome.getText().toString(), edEmail.getText().toString());
+                    Call<Aluno> call = new RetrofitConfig().getService().alterarAluno(aluno.getRA(), aluno);
+                    call.enqueue(new Callback<Aluno>() {
+                        @Override
+                        public void onResponse(Response<Aluno> response, Retrofit retrofit) {
+                            if(response.isSuccess()){
+                                Aluno alunoAlterado = response.body();
+                                String ra = alunoAlterado.getRA();
+                            }
+                            else{
+                                //Toast.makeText(CRUDActivity.this, "Erro ao alterar", Toast.LENGTH_SHORT).show();
+
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Throwable t) {
+                            //Toast.makeText(CRUDActivity.this, "Ocorreu um erro na requisição", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                catch(Exception e)
+                {
+
+                }
             }
         });
         deletar.setOnClickListener(new View.OnClickListener() {
@@ -62,15 +115,6 @@ public class ViewAlunos {
             public void onClick(View view) {
             }
         });
-        li.addView(adicionar);
-        li.addView(alterar);
-        li.addView(deletar);
 
-        LinearLayout lis = new LinearLayout(contexto);
-        lis.setOrientation(LinearLayout.VERTICAL);
-        lis.addView(l);
-        lis.addView(li);
-
-        pai.addView(lis);
     }
 }

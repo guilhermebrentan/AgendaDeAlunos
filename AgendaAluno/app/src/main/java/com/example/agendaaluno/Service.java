@@ -12,13 +12,13 @@ public interface Service {
     @GET("getAluno/{RA}")
     Call<List<Aluno>> pegaRA(@Path("RA") String RA);
 
-    @POST("post")
+    @POST("insertAluno")
     Call<Aluno> incluirAluno(@Body Aluno aluno);
 
-    @PUT("put/{RA}")
+    @PUT("updateAluno/{RA}")
     Call<Aluno> alterarAluno(@Path("RA") String RA, @Body Aluno aluno);
 
-    @DELETE("delete/{RA}")
+    @DELETE("deleteAluno/{RA}")
     Call<Aluno> excluirAluno(@Path("RA") String RA);
 
 }

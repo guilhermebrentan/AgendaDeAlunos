@@ -46,7 +46,7 @@ router.get("/getAluno/:RA?",(req,res) => {
     }
 });
 
-router.get("/deleteAluno/:RA",(req,res)=>{
+router.delete("/deleteAluno/:RA",(req,res)=>{
     //pega o valor do RA
     var ra = parseInt(req.params.RA);
     var query;
@@ -69,10 +69,10 @@ router.get("/deleteAluno/:RA",(req,res)=>{
                 }).catch(err => res.json(err));   
 });
 
-router.get("/insertAluno/:RA/:NOME/:EMAIL",(req,res)=>{
-    var ra = parseInt(req.params.RA);
-    var nome = req.params.NOME.toString();
-    var email = req.params.EMAIL.toString();
+router.post("/insertAluno",(req,res)=>{
+    var ra = parseInt(req.body.RA);
+    var nome = req.body.Nome.toString();
+    var email = req.body.Email.toString();
     
     var query = "insert into Aluno values ('"+ra+"','"+nome+"', '"+email+"')";
 
@@ -81,12 +81,13 @@ router.get("/insertAluno/:RA/:NOME/:EMAIL",(req,res)=>{
     .catch(err => res.json({"mensagem":"Dados inválidos, tente novamente"}));            
 });
 
-router.get("/updateAluno/:RA/:NOME/:EMAIL",(req,res)=>{
+router.put("/updateAluno/:RA",(req,res)=>{
     var ra = parseInt(req.params.RA);
-    var nome = req.params.NOME.toString();
-    var email = req.params.EMAIL.toString();
+    var raNovo = parseInt(req.body.RA);
+    var nome = req.body.Nome.toString();
+    var email = req.body.Email.toString();
     
-    var query = "update Aluno set nome = '"+nome+"', email = '"+email+"' where ra = "+ra+"";
+    var query = "update Aluno set nome = '"+nome+"', email = '"+email+"', ra = '"+raNovo+"' where ra = "+ra+"";
 
     global.conn.query(query)
     .then(result => res.json({"mensagem":"Registro de aluno atualizado com sucesso"}))
