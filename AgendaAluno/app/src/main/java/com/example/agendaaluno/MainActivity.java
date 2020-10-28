@@ -3,8 +3,6 @@ package com.example.agendaaluno;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,8 +19,8 @@ import retrofit.Response;
 import retrofit.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
-    LinearLayout layout;
-    ScrollView pai;
+    LinearLayout layout, pai;
+    ScrollView scroll;
     EditText pesquisaRA;
     MainActivity contexto;
     Button btnBuscar;
@@ -34,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
             layout = (LinearLayout) findViewById(R.id.layout);
             pesquisaRA = (EditText) findViewById(R.id.edPesquisaRa);
-            pai = (ScrollView) findViewById(R.id.pai);
+            pai = (LinearLayout) findViewById(R.id.pai);
+            scroll = (ScrollView) findViewById(R.id.scroll);
             btnBuscar = (Button) findViewById(R.id.btnBuscar);
             contexto = this;
 
