@@ -115,10 +115,6 @@ public class ViewAlunos {
                                 Aluno alunoAlterado = response.body();
                                 String ra = alunoAlterado.getRA();
                             }
-                            else{
-
-
-                            }
                     }
 
                         @Override
@@ -160,10 +156,7 @@ public class ViewAlunos {
                         public void onFailure(Throwable t) {}
                     });
                 }
-                catch(Exception e)
-                {
-
-                }
+                catch(Exception e){}
             }
         });
 
