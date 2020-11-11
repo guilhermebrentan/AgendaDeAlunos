@@ -20,7 +20,6 @@ public class HttpManager {
             while ((line = reader.readLine()) != null) {
                 stringBuilder.append(line + "\n");
             }
-            System.out.println("TESTE2");
             return stringBuilder.toString();
         } catch (IOException e) {
             e.printStackTrace();
