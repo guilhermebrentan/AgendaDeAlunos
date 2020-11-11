@@ -52,9 +52,6 @@ public class ViewAlunos {
         alterar.setText("Alterar");
         adicionar.setText("Adicionar");
         deletar.setText("Deletar");
-        /*alterar.setTextSize(8);
-        deletar.setTextSize(8);
-        adicionar.setTextSize(8);*/
 
         li.addView(adicionar);
         li.addView(alterar);
@@ -70,10 +67,6 @@ public class ViewAlunos {
         alterar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //((EditText)((ViewGroup)((ViewGroup)view.getParent().getParent().getParent()).getChildAt(1)).getChildAt(1)).setText("");
-
-                //final Button botaum = (Button)((ViewGroup)((ViewGroup)view.getParent().getParent().getParent()).getChildAt(2)).getChildAt(0);
-
                 ViewGroup papai = (ViewGroup)view.getParent().getParent();
                 ViewGroup v = (ViewGroup)papai.getChildAt(0);
 
@@ -91,34 +84,19 @@ public class ViewAlunos {
                             if(response.isSuccess()){
                                 Aluno alunoAlterado = response.body();
                                 String ra = alunoAlterado.getRA();
-                                //botaum.performClick();
-
-                            }
-                            else{
-                                //Toast.makeText(CRUDActivity.this, "Erro ao alterar", Toast.LENGTH_SHORT).show();
-
                             }
                         }
 
                         @Override
-                        public void onFailure(Throwable t) {
-                            //Toast.makeText(CRUDActivity.this, "Ocorreu um erro na requisição", Toast.LENGTH_SHORT).show();
-                        }
+                        public void onFailure(Throwable t) {}
                     });
                 }
-                catch(Exception e)
-                {
-
-                }
-                //papai.removeAllViews();
+                catch(Exception e){}
             }
         });
         deletar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //((EditText)((ViewGroup)((ViewGroup)view.getParent().getParent().getParent()).getChildAt(1)).getChildAt(1)).setText("");
-
-                //final Button botaum = (Button)((ViewGroup)((ViewGroup)view.getParent().getParent().getParent()).getChildAt(2)).getChildAt(0);
                 ViewGroup papai = (ViewGroup)view.getParent().getParent();
                 ViewGroup v = (ViewGroup)papai.getChildAt(0);
 
@@ -136,7 +114,6 @@ public class ViewAlunos {
                             if(response.isSuccess()){
                                 Aluno alunoAlterado = response.body();
                                 String ra = alunoAlterado.getRA();
-                                //botaum.performClick();
                             }
                             else{
 
@@ -145,9 +122,7 @@ public class ViewAlunos {
                     }
 
                         @Override
-                        public void onFailure(Throwable t) {
-                            //Toast.makeText(CRUDActivity.this, "Ocorreu um erro na requisição", Toast.LENGTH_SHORT).show();
-                        }
+                        public void onFailure(Throwable t) {}
                     });
                 }
                 catch(Exception e)
@@ -160,9 +135,6 @@ public class ViewAlunos {
         adicionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //((EditText)((ViewGroup)((ViewGroup)view.getParent().getParent().getParent()).getChildAt(1)).getChildAt(1)).setText("");
-
-                //final Button botaum = (Button)((ViewGroup)((ViewGroup)view.getParent().getParent().getParent()).getChildAt(2)).getChildAt(0);
                 final ViewGroup papai = (ViewGroup)view.getParent().getParent();
                 ViewGroup v = (ViewGroup)papai.getChildAt(0);
 
@@ -181,27 +153,17 @@ public class ViewAlunos {
                                 Aluno alunoAlterado = response.body();
                                 String ra = alunoAlterado.getRA();
                                 ViewAlunos.MostrarAluno(aluno, (LinearLayout) papai.getParent(), contexto);
-                                //botaum.performClick();
-
-                            }
-                            else{
-                                //Toast.makeText(CRUDActivity.this, "Erro ao alterar", Toast.LENGTH_SHORT).show();
-
                             }
                         }
 
                         @Override
-                        public void onFailure(Throwable t) {
-                            //Toast.makeText(CRUDActivity.this, "Ocorreu um erro na requisição", Toast.LENGTH_SHORT).show();
-                        }
+                        public void onFailure(Throwable t) {}
                     });
                 }
                 catch(Exception e)
                 {
 
                 }
-
-                //papai.removeAllViews();
             }
         });
 
