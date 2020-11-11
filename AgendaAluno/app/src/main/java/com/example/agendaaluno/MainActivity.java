@@ -38,15 +38,6 @@ public class MainActivity extends AppCompatActivity {
             contexto = this;
 
             try {
-                ArrayList<Aluno> alunos = new ArrayList<Aluno>();
-                alunos.add(new Aluno("19817", "djhgs", "kdxj"));
-                alunos.add(new Aluno("19817", "djhgs", "kdxj"));
-
-                ViewAlunos.MostrarAlunos(alunos, pai, this);
-            } catch (Exception e) {
-            }
-
-            try {
                 btnBuscar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
